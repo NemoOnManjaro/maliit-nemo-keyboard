@@ -1,34 +1,20 @@
 # $Id$
 
-_host="github.com"
-_project=nemomobile-ux
-_basename=maliit-nemo-keyboard
-_branch=master
+pkgname=maliit-nemo-keyboard
 
-_gitname=$_basename
-pkgname=$_basename-git
+pkgver=0.100
 
-pkgver=0.99.2.r18.g89f1e862
-
-pkgrel=2
+pkgrel=1
 pkgdesc="Contains the reference input method plugins, such as the Maliit Keyboard. "
 arch=('x86_64' 'aarch64')
-url="https://$_host/$_project/$_gitname#branch=$_branch"
+url="https://github.com/nemomobile-ux/maliit-nemo-keyboard"
 license=('BSD')
 depends=('maliit-framework')
-makedepends=('git' 'cmake')
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
-source=("${pkgname}::git+${url}" "nemo-keyboard.service")
-sha256sums=('SKIP' 'SKIP')
-
-pkgver() {
-  cd "${srcdir}/${pkgname}"
-  ( set -o pipefail
-    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-  ) 2>/dev/null
-}
+makedepends=('cmake')
+source=("${url}/archive/refs/tags/$pkgver.tar.gz"
+        "nemo-keyboard.service")
+sha256sums=('042f98ef2bbf48b3a06b6c67591b8f00c502bf9c9c108f57e472c5716e3731a5' 
+        'ff03fb71dd600b0da1c28429fd9623ba744467715930dab02758cb0205979cbe')
 
 build() {
     cmake \
