@@ -17,17 +17,15 @@ sha256sums=('042f98ef2bbf48b3a06b6c67591b8f00c502bf9c9c108f57e472c5716e3731a5'
         'ff03fb71dd600b0da1c28429fd9623ba744467715930dab02758cb0205979cbe')
 
 build() {
-    cd "${srcdir}/${pkgname}"
+    cd $pkgname-$pkgver
     cmake \
-        -B "${pkgname}/build" \
-        -S "${pkgname}" \
         -DCMAKE_INSTALL_PREFIX:PATH='/usr'
-    make -C "${pkgname}/build" all
+    make all
 }
 
 package() {
-    cd "${srcdir}/${pkgname}"
-    make -C "${srcdir}/${pkgname}/build" DESTDIR="$pkgdir" install
+    cd $pkgname-$pkgver
+    make DESTDIR="$pkgdir" install
     mkdir -p $pkgdir/usr/lib/systemd/user/graphical-session.target.wants/
     cp ${srcdir}/nemo-keyboard.service $pkgdir/usr/lib/systemd/user/
     ln -s ../nemo-keyboard.service $pkgdir/usr/lib/systemd/user/graphical-session.target.wants/
