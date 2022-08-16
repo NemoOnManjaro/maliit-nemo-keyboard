@@ -2,7 +2,7 @@
 
 pkgname=maliit-nemo-keyboard
 
-pkgver=0.100
+pkgver=0.101
 
 pkgrel=1
 pkgdesc="Contains the reference input method plugins, such as the Maliit Keyboard. "
@@ -13,7 +13,7 @@ depends=('maliit-framework')
 makedepends=('cmake')
 source=("${url}/archive/refs/tags/$pkgver.tar.gz"
         "nemo-keyboard.service")
-sha256sums=('042f98ef2bbf48b3a06b6c67591b8f00c502bf9c9c108f57e472c5716e3731a5' 
+sha256sums=('a0a9d3c633a4f8b47d7db7263932dea5616773e8b618f7eb350f45f8cf1cf1cb' 
         'ff03fb71dd600b0da1c28429fd9623ba744467715930dab02758cb0205979cbe')
 
 build() {
