@@ -1,45 +1,29 @@
 # $Id$
-
-_host="github.com"
-_project=nemomobile-ux
-_basename=maliit-nemo-keyboard
-_branch=master
-
-_gitname=$_basename
-pkgname=$_basename-git
-
-pkgver=0.103.r11.ge232225a
-
-pkgrel=2
+pkgname=maliit-nemo-keyboard
+pkgver=0.103
+pkgrel=1
 pkgdesc="Contains the reference input method plugins, such as the Maliit Keyboard. "
 arch=('x86_64' 'aarch64')
-url="https://$_host/$_project/$_gitname#branch=$_branch"
+url="https://github.com/nemomobile-ux/maliit-nemo-keyboard"
 license=('BSD')
-depends=('maliit-framework' 'maliit-keyboard' 'glacier-settings' 'hunspell' 'hunspell-en_us' 'presage2' 'presage2-lang-en_US' 'marisa')
-makedepends=('git' 'cmake')
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
-source=("${pkgname}::git+${url}" "nemo-keyboard.service")
-sha256sums=('SKIP' 'SKIP')
-
-pkgver() {
-  cd "${srcdir}/${pkgname}"
-  ( set -o pipefail
-    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-  ) 2>/dev/null
-}
+depends=('maliit-framework'
+	    'glacier-settings>=0.6.1')
+makedepends=('cmake')
+source=("${url}/archive/refs/tags/$pkgver.tar.gz"
+        "nemo-keyboard.service")
+sha256sums=('a024ec987c882d81d37bd6411ada85871e83369bfc54db9595473c70417daf2f'
+        'ff03fb71dd600b0da1c28429fd9623ba744467715930dab02758cb0205979cbe')
 
 build() {
+    cd $pkgname-$pkgver
     cmake \
-        -B "${pkgname}/build" \
-        -S "${pkgname}" \
         -DCMAKE_INSTALL_PREFIX:PATH='/usr'
-    make -C "${pkgname}/build" all
+    make all
 }
 
 package() {
-    make -C "${srcdir}/${pkgname}/build" DESTDIR="$pkgdir" install
+    cd $pkgname-$pkgver
+    make DESTDIR="$pkgdir" install
     mkdir -p $pkgdir/usr/lib/systemd/user/graphical-session.target.wants/
     cp ${srcdir}/nemo-keyboard.service $pkgdir/usr/lib/systemd/user/
     ln -s ../nemo-keyboard.service $pkgdir/usr/lib/systemd/user/graphical-session.target.wants/
