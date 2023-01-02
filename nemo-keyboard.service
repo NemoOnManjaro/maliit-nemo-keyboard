@@ -3,7 +3,7 @@ Description=NemoMobile keyboard
 BindsTo=graphical-session.target
 Before=graphical-session.target
 Requires=dbus.socket
-After=dbus.socket
+After=lipstick.service
 
 [Service]
 Type=simple
