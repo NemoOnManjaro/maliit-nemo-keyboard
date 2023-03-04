@@ -10,7 +10,7 @@ depends=('maliit-framework'
 	    'glacier-settings>=0.6.1'
 	    'hunspell'
 	    'presage')
-makedepends=('cmake')
+makedepends=('cmake' 'qt5-tools')
 source=("${url}/archive/refs/tags/$pkgver.tar.gz")
 sha256sums=('67fe3fd0ea4c8bc8106e105fe68f2f861ef89caeba76c58ff1946241bb14f71b')
 
