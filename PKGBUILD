@@ -1,18 +1,22 @@
 # $Id$
 pkgname=maliit-nemo-keyboard
-pkgver=0.105
+pkgver=0.106
 pkgrel=1
 pkgdesc="Contains nemoobile mallit keyboard"
 arch=('x86_64' 'aarch64')
 url="https://github.com/nemomobile-ux/maliit-nemo-keyboard"
 license=('BSD')
-depends=('maliit-framework'
-	    'glacier-settings>=0.6.1'
-	    'hunspell'
-	    'presage')
-makedepends=('cmake' 'qt5-tools')
+depends=(
+    'maliit-framework-qt6'
+    'glacier-settings'
+    'hunspell'
+    'hunspell-en_us'
+    'presage2>=2.0.1'
+    'presage2-lang-en_US'
+    'marisa')
+makedepends=('cmake' 'qt6-tools')
 source=("${url}/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('67fe3fd0ea4c8bc8106e105fe68f2f861ef89caeba76c58ff1946241bb14f71b')
+sha256sums=('10e994b34be3480228d7d824b181ffd1262218bca0db618f66e6a150b806ff6f')
 
 build() {
     cd $pkgname-$pkgver
