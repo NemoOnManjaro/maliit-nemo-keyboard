@@ -1,6 +1,6 @@
 # $Id$
 pkgname=maliit-nemo-keyboard
-pkgver=0.108
+pkgver=0.109
 pkgrel=1
 pkgdesc="Contains nemoobile mallit keyboard"
 arch=('x86_64' 'aarch64')
@@ -16,7 +16,7 @@ depends=(
     'marisa')
 makedepends=('cmake' 'qt6-tools')
 source=("${url}/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('64e39b2b84b23f4dd813a20ab008c23ebd38a5a73f0fc39377c4bdab1346b8e4')
+sha256sums=('1861f9e729d875a213b25cd05d67d194f6830619f7a5ac4ed56facf7575d0b67')
 
 build() {
     cd $pkgname-$pkgver
