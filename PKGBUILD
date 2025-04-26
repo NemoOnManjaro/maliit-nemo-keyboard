@@ -1,8 +1,8 @@
 # $Id$
 pkgname=maliit-nemo-keyboard
-pkgver=0.109
+pkgver=1.0
 pkgrel=1
-pkgdesc="Contains nemoobile mallit keyboard"
+pkgdesc="Nemomobile keyboard"
 arch=('x86_64' 'aarch64')
 url="https://github.com/nemomobile-ux/maliit-nemo-keyboard"
 license=('BSD')
@@ -16,7 +16,7 @@ depends=(
     'marisa')
 makedepends=('cmake' 'qt6-tools')
 source=("${url}/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('1861f9e729d875a213b25cd05d67d194f6830619f7a5ac4ed56facf7575d0b67')
+sha256sums=('e4ee02f3d165b57bfb2f42408e4db783191fcea5e03f27f36c93b53f6cd2f857')
 
 build() {
     cd $pkgname-$pkgver
